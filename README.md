@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## My Notes
+
+```bash
+npm install -g @angular/cli
+
+https://ng-bootstrap.github.io/#/getting-started
+npm install --save @ng-bootstrap/ng-bootstrap
+
+ng serve --open
+```

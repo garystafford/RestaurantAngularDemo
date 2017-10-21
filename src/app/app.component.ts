@@ -1,18 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuService} from './menu.service';
-import {Menu} from './menu';
+import {Component, OnInit, NgModule} from '@angular/core';
+import {MenuItemService} from './menu-item.service';
+import {MenuItem} from './menu-item';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
+    NgbModule.forRoot()
+  ],
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
+})
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MenuService]
+  providers: [MenuItemService],
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  menu: Menu[];
+  menu: MenuItem[];
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuItemService: MenuItemService) {
   }
 
   ngOnInit(): void {
@@ -20,6 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   getMenu(): void {
-    this.menuService.getMenu().then(menu => this.menu = menu);
+    this.menuItemService.getMenu().then(menu => this.menu = menu);
   }
 }
