@@ -18,18 +18,11 @@
           <input id="select_quantity" type="number" min="1" max="99"
                  class="form-control" placeholder="0"/>
         </div>
-        <div class="dropdown" dropdown>
-          <a dropdown-open>My Heroes</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Badman</a></li>
-            <li><a href="#">Sadman</a></li>
-            <li><a href="#">Lieman</a></li>
-          </ul>
-        </div>
         <div class="form-group">
           <label for="select_item">Items:</label>
           <select id="select_item" class="form-control">
             <option selected="selected">Select an Item...</option>
+            <option *ngFor="let item of menu" [value]="item.id">{{item.description}}</option>
           </select>
         </div>
         <button type="button" class="btn btn-primary" id="add_btn">Add</button>

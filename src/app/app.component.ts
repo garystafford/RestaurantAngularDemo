@@ -2,7 +2,6 @@ import {Component, OnInit, NgModule} from '@angular/core';
 import {MenuItemService} from './menu-item.service';
 import {MenuItem} from './menu-item';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DropdownModule} from 'ng2-dropdown';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +12,7 @@ import {DropdownModule} from 'ng2-dropdown';
 
 @NgModule({
   imports: [
-    NgbModule,
-    DropdownModule
+    NgbModule
   ]
 })
 
