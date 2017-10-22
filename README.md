@@ -34,6 +34,6 @@ npm install -g @angular/cli
 
 https://ng-bootstrap.github.io/#/getting-started
 npm install --save @ng-bootstrap/ng-bootstrap
-
+npm install ng2-dropdown --save
 ng serve --open
 ```
