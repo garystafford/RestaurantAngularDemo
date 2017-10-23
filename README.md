@@ -27,13 +27,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-## My Notes
+## Installation and Run Notes
 
-```bash
-npm install -g @angular/cli
+1. Download and install Node.js and npm  
+https://nodejs.org/en/  
 
-https://ng-bootstrap.github.io/#/getting-started
-npm install --save @ng-bootstrap/ng-bootstrap
-npm install --save bootstrap@4.0.0-beta.2
-ng serve --open
-```
+2. Install the Angular CLI globally 
+https://angular.io/  
+`npm install -g @angular/cli`
+
+3. Install `ng-bootstrap` dependency into the project  
+`npm install --save bootstrap@4.0.0-beta.2`
+
+4. Install `ng-bootstrap` into the project  
+https://ng-bootstrap.github.io/#/getting-started  
+`npm install --save @ng-bootstrap/ng-bootstrap`
+
+5. Build and run project continuously  
+`ng serve --open`
