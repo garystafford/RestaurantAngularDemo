@@ -32,11 +32,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 1. Download and install Node.js and npm  
 https://nodejs.org/en/  
 
-2. Install the Angular CLI globally 
+2. Install the Angular CLI globally  
 https://angular.io/  
 `npm install -g @angular/cli`
 
 3. Install `ng-bootstrap` dependency into the project  
+http://getbootstrap.com/docs/4.0/getting-started/download/#npm   
 `npm install --save bootstrap@4.0.0-beta.2`
 
 4. Install `ng-bootstrap` into the project  
