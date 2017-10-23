@@ -20,7 +20,7 @@
       <div class="form-group">
         <label for="select_item">Items:</label>
         <select id="select_item" class="form-control" #menuChoice>
-          <option selected="selected">Select an Item...</option>
+          <option selected="selected" value="0">Select an Item...</option>
           <option *ngFor="let menuItem of menu" [value]="menuItem.id">{{menuItem.description}}
             (${{menuItem.price.toFixed(2)}})
           </option>

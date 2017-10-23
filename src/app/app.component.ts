@@ -31,10 +31,23 @@ export class AppComponent implements OnInit {
   }
 
   onSelect(menuChoiceId: string, menuChoiceQuantity: string): void {
+    if ((parseInt(menuChoiceId, 10) < 1) || (menuChoiceId === '')) {
+      document.getElementById('select_item').focus();
+      return;
+    }
+
+    if ((parseInt(menuChoiceQuantity, 10) < 1) || (menuChoiceQuantity === '')) {
+      document.getElementById('select_quantity').focus();
+      return;
+    }
+
     const orderItem: OrderItem = this.addToOrder(menuChoiceId, menuChoiceQuantity);
     this.order.orderItems.push(orderItem);
     console.log(orderItem);
     console.log(this.order.orderItems.length);
+
+    (<HTMLInputElement>document.getElementById('select_quantity')).valueAsNumber = 0;
+    // (<HTMLInputElement>document.getElementById('select_item')).valueAsNumber = 0;
   }
 
   private addToOrder(menuChoiceId: string, menuChoiceQuantity: string): OrderItem {
