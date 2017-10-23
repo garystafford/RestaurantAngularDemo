@@ -12,21 +12,23 @@
         </div>
       </div>
       <p class="h4">Menu</p>
-      <form role="form">
-        <div class="form-group">
-          <label for="select_quantity">Quantity:</label>
-          <input id="select_quantity" type="number" min="1" max="99"
-                 class="form-control" placeholder="0"/>
-        </div>
-        <div class="form-group">
-          <label for="select_item">Items:</label>
-          <select id="select_item" class="form-control">
-            <option selected="selected">Select an Item...</option>
-            <option *ngFor="let item of menu" [value]="item.id">{{item.description}}</option>
-          </select>
-        </div>
-        <button type="button" class="btn btn-primary" id="add_btn">Add</button>
-      </form>
+      <div class="form-group">
+        <label for="select_quantity">Quantity:</label>
+        <input id="select_quantity" type="number" min="1" max="99"
+               class="form-control" placeholder="0" #quantity/>
+      </div>
+      <div class="form-group">
+        <label for="select_item">Items:</label>
+        <select id="select_item" class="form-control" #menuChoice>
+          <option selected="selected">Select an Item...</option>
+          <option *ngFor="let menuItem of menu" [value]="menuItem.id">{{menuItem.description}}
+            (${{menuItem.price.toFixed(2)}})
+          </option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" id="add_btn" (click)="onSelect(menuChoice.value, quantity.value)">
+        Add
+      </button>
     </div>
   </div>
   <div class="row">
