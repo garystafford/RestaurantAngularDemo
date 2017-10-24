@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   menu: MenuItem[];
   order: Order = new Order;
-  totalOrder = 0;
+  totalOrder: number;
 
   constructor(private menuItemService: MenuItemService) {
   }
@@ -53,10 +53,6 @@ export class AppComponent implements OnInit {
     this.resetFormForNextOrderItem();
   }
 
-  removeItem(): void {
-    console.log('foo');
-  }
-
   getMenu(): void {
     this.menuItemService.getMenu()
       .then(menu => this.menu = menu)
@@ -77,14 +73,33 @@ export class AppComponent implements OnInit {
       '<td class="text-left">' + orderItem.description + '</td>' +
       '<td class="text-right">$' + orderItem.price + '</td>' +
       '<td class="text-right">$' + orderItem.subtotal + '</td>' +
-      '<td class="text-center"><button class="btn btn-danger btn-sm" id="remove_btn" (click)="removeItem()">Remove</button>' +
+      '<td class="remove-column text-center"><button class="remove-button btn btn-danger btn-sm">Remove</button>' +
       '</td>';
 
     const newRow = orderTableBody.insertRow(0);
 
     const tr = document.createElement('tr');
     tr.innerHTML = newRowAsString;
+    tr.cells.item(tr.cells.length - 1).addEventListener('click', function () {
+      (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(tr.rowIndex);
+    });
     orderTableBody.appendChild(tr);
+
+    // const rowCount = orderTableBody.rows.length;
+    // const cellCount = orderTableBody.rows[rowCount - 1].cells.length;
+    // const cellContents = orderTableBody.rows[rowCount - 1].cells[cellCount - 1].innerHTML;
+    // orderTableBody.rows[rowCount - 1].cells[cellCount - 1].addEventListener('click', function () {
+    //   console.log('foo');
+    // });
+    //
+    // (<HTMLTableCellElement>orderTableBody.getElementsByClassName('remove-column').item(0))
+    //   .addEventListener('click', function () {
+    //     console.log('foo');
+    //   });
+  }
+
+  removeOrderItem(rowIndex: number) {
+    (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(rowIndex);
   }
 
   private resetFormForNextOrderItem() {
