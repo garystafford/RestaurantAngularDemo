@@ -41,17 +41,41 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    const orderItem: OrderItem = this.addToOrder(menuChoiceId, menuChoiceQuantity);
+    const orderItem: OrderItem = this.addItemToOrder(menuChoiceId, menuChoiceQuantity);
     this.order.orderItems.push(orderItem);
+    this.addOrderItemToTable(orderItem);
+
     console.log(orderItem);
     console.log(this.order.orderItems.length);
 
-    (<HTMLInputElement>document.getElementById('select_quantity')).valueAsNumber = 0;
-    // (<HTMLInputElement>document.getElementById('select_item')).valueAsNumber = 0;
+    this.resetFormForNextOrderItem();
   }
 
-  private addToOrder(menuChoiceId: string, menuChoiceQuantity: string): OrderItem {
+  private addOrderItemToTable(orderItem: OrderItem) {
+    const orderTableBody = (<HTMLTableSectionElement>document.getElementById('order_table_body'));
+    const newRowAsString =
+      '<td class="text-center">' + orderItem.quantity + '</td>' +
+      '<td class="text-left">' + orderItem.description + '</td>' +
+      '<td class="text-right">$' + orderItem.price + '</td>' +
+      '<td class="text-right">$' + orderItem.subtotal + '</td>' +
+      '<td class="text-center"><button class="btn btn-danger btn-sm">Remove</button>' +
+      '</td>';
+
+    const newRow = orderTableBody.insertRow(0);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = newRowAsString;
+    orderTableBody.appendChild(tr);
+  }
+
+  private resetFormForNextOrderItem() {
+    (<HTMLInputElement>document.getElementById('select_quantity')).valueAsNumber = 0;
+    (<HTMLSelectElement>document.getElementById('select_item')).selectedIndex = 0;
+  }
+
+  private addItemToOrder(menuChoiceId: string, menuChoiceQuantity: string): OrderItem {
     const menuChoice: MenuItem = this.menu.find(menuItem => menuItem.id === parseInt(menuChoiceId, 10));
+
     const orderItem: OrderItem = new OrderItem();
     orderItem.quantity = parseInt(menuChoiceQuantity, 10);
     orderItem.id = menuChoice.id;
