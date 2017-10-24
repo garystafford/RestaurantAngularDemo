@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
       '<td class="text-left">' + orderItem.description + '</td>' +
       '<td class="text-right">$' + orderItem.price + '</td>' +
       '<td class="text-right">$' + orderItem.subtotal + '</td>' +
-      '<td class="remove-column text-center"><button class="remove-button btn btn-danger btn-sm">Remove</button>' +
+      '<td class="text-center"><button class="remove-button btn btn-danger btn-sm">Remove</button>' +
       '</td>';
 
     const newRow = orderTableBody.insertRow(0);
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
     orderTableBody.appendChild(tr);
   }
 
-  removeOrderItem(rowIndex: number) {
+  public removeOrderItem(rowIndex: number) {
     (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(rowIndex);
   }
 
