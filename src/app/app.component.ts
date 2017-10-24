@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   menu: MenuItem[];
   order: Order = new Order;
+  totalOrder = 0;
 
   constructor(private menuItemService: MenuItemService) {
   }
@@ -44,11 +45,29 @@ export class AppComponent implements OnInit {
     const orderItem: OrderItem = this.addItemToOrder(menuChoiceId, menuChoiceQuantity);
     this.order.orderItems.push(orderItem);
     this.addOrderItemToTable(orderItem);
+    this.calculateTotal();
 
     console.log(orderItem);
     console.log(this.order.orderItems.length);
 
     this.resetFormForNextOrderItem();
+  }
+
+  removeItem(): void {
+    console.log('foo');
+  }
+
+  getMenu(): void {
+    this.menuItemService.getMenu()
+      .then(menu => this.menu = menu)
+      .then(menu => menu.sort((a, b) => a.description.localeCompare(b.description)));
+  }
+
+  private calculateTotal() {
+    this.totalOrder = 0;
+    for (const item of this.order.orderItems) {
+      this.totalOrder = this.totalOrder + item.subtotal;
+    }
   }
 
   private addOrderItemToTable(orderItem: OrderItem) {
@@ -58,7 +77,7 @@ export class AppComponent implements OnInit {
       '<td class="text-left">' + orderItem.description + '</td>' +
       '<td class="text-right">$' + orderItem.price + '</td>' +
       '<td class="text-right">$' + orderItem.subtotal + '</td>' +
-      '<td class="text-center"><button class="btn btn-danger btn-sm">Remove</button>' +
+      '<td class="text-center"><button class="btn btn-danger btn-sm" id="remove_btn" (click)="removeItem()">Remove</button>' +
       '</td>';
 
     const newRow = orderTableBody.insertRow(0);
@@ -73,7 +92,7 @@ export class AppComponent implements OnInit {
     (<HTMLSelectElement>document.getElementById('select_item')).selectedIndex = 0;
   }
 
-  private addItemToOrder(menuChoiceId: string, menuChoiceQuantity: string): OrderItem {
+  private addItemToOrder(menuChoiceId, menuChoiceQuantity): OrderItem {
     const menuChoice: MenuItem = this.menu.find(menuItem => menuItem.id === parseInt(menuChoiceId, 10));
 
     const orderItem: OrderItem = new OrderItem();
@@ -84,11 +103,5 @@ export class AppComponent implements OnInit {
     orderItem.subtotal = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));
 
     return orderItem;
-  }
-
-  getMenu(): void {
-    this.menuItemService.getMenu()
-      .then(menu => this.menu = menu)
-      .then(menu => menu.sort((a, b) => a.description.localeCompare(b.description)));
   }
 }
