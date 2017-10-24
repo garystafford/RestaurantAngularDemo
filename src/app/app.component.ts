@@ -84,18 +84,6 @@ export class AppComponent implements OnInit {
       (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(tr.rowIndex);
     });
     orderTableBody.appendChild(tr);
-
-    // const rowCount = orderTableBody.rows.length;
-    // const cellCount = orderTableBody.rows[rowCount - 1].cells.length;
-    // const cellContents = orderTableBody.rows[rowCount - 1].cells[cellCount - 1].innerHTML;
-    // orderTableBody.rows[rowCount - 1].cells[cellCount - 1].addEventListener('click', function () {
-    //   console.log('foo');
-    // });
-    //
-    // (<HTMLTableCellElement>orderTableBody.getElementsByClassName('remove-column').item(0))
-    //   .addEventListener('click', function () {
-    //     console.log('foo');
-    //   });
   }
 
   removeOrderItem(rowIndex: number) {
