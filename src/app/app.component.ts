@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   menu: MenuItem[];
   order: Order = new Order;
-  totalOrder: number;
+  totalOrder = 0;
 
   constructor(private menuItemService: MenuItemService) {
   }
@@ -83,11 +83,14 @@ export class AppComponent implements OnInit {
     tr.cells.item(tr.cells.length - 1).addEventListener('click', function () {
       (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(tr.rowIndex);
     });
-    orderTableBody.appendChild(tr);
-  }
+    console.log(tr.rowIndex);
 
-  public removeOrderItem(rowIndex: number) {
-    (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(rowIndex);
+    // tr.cells.item(tr.cells.length - 1).addEventListener('click', this.removeOrderItem.bind(tr.rowIndex));
+    orderTableBody.appendChild(tr);
+  }1
+
+  public removeOrderItem(rowIndex) {
+    (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(parseInt(rowIndex, 10));
   }
 
   private resetFormForNextOrderItem() {
