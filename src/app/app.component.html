@@ -59,7 +59,26 @@
           </th>
         </tr>
         </thead>
-        <tbody id="order_table_body"></tbody>
+        <tbody id="order_table_body">
+        <tr *ngFor="let orderItem of order.orderItems; let i = index">
+          <td class="text-center">
+            {{orderItem.quantity}}
+          </td>
+          <td class="text-left">
+            {{orderItem.description}}
+          </td>
+          <td class="text-right">
+            {{orderItem.price}}
+          </td>
+          <td class="text-right">
+            {{orderItem.subtotal}}
+          </td>
+          <td class="text-center">
+            <button class="remove-button btn btn-danger btn-sm" type="button" (click)="removeOrderItem(i)">Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
         <tfoot class="text-right">
         <tr>
           <th colspan="3">
@@ -71,17 +90,15 @@
         </tr>
         </tfoot>
       </table>
-      <button id="order_btn" class="btn btn-success">Order!</button>
+      <button id="order_btn" class="btn btn-success" (click)="onSubmit()">Order!</button>
     </div>
-  </div>
-  <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8 vertical-spacer">
       <hr/>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8">
-      <p id="orderResponse"></p>
+      <p [(ngModel)]="orderResponse" id="orderResponse">{{orderResponse}}</p>
     </div>
   </div>
 </div>

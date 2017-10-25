@@ -4,12 +4,13 @@ import {MenuItem} from './menu-item';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Order} from './order';
 import {OrderItem} from './order-item';
+import {OrderService} from './order.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MenuItemService]
+  providers: [MenuItemService, OrderService]
 })
 
 @NgModule({
@@ -19,16 +20,24 @@ import {OrderItem} from './order-item';
 })
 
 export class AppComponent implements OnInit {
-  title = 'app';
   menu: MenuItem[];
   order: Order = new Order;
   totalOrder = 0;
+  orderService: OrderService = new OrderService;
+  orderResponse = 'moo';
+  isValid = false;
 
   constructor(private menuItemService: MenuItemService) {
   }
 
   ngOnInit(): void {
     this.getMenu();
+    // this.order.orderItems.push(new OrderItem());
+  }
+
+  onSubmit(): void {
+    this.orderResponse = this.orderService.placeOrder();
+    console.log(this.orderResponse);
   }
 
   onSelect(menuChoiceId: string, menuChoiceQuantity: string): void {
@@ -44,8 +53,13 @@ export class AppComponent implements OnInit {
 
     const orderItem: OrderItem = this.addItemToOrder(menuChoiceId, menuChoiceQuantity);
     this.order.orderItems.push(orderItem);
-    this.addOrderItemToTable(orderItem);
     this.calculateTotal();
+
+    if (this.order.orderItems.length > 0) {
+      this.isValid = true;
+    } else {
+      this.isValid = false;
+    }
 
     console.log(orderItem);
     console.log(this.order.orderItems.length);
@@ -66,31 +80,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private addOrderItemToTable(orderItem: OrderItem) {
-    const orderTableBody = (<HTMLTableSectionElement>document.getElementById('order_table_body'));
-    const newRowAsString =
-      '<td class="text-center">' + orderItem.quantity + '</td>' +
-      '<td class="text-left">' + orderItem.description + '</td>' +
-      '<td class="text-right">$' + orderItem.price + '</td>' +
-      '<td class="text-right">$' + orderItem.subtotal + '</td>' +
-      '<td class="text-center"><button class="remove-button btn btn-danger btn-sm">Remove</button>' +
-      '</td>';
-
-    const newRow = orderTableBody.insertRow(0);
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = newRowAsString;
-    tr.cells.item(tr.cells.length - 1).addEventListener('click', function () {
-      (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(tr.rowIndex);
-    });
-    console.log(tr.rowIndex);
-
-    // tr.cells.item(tr.cells.length - 1).addEventListener('click', this.removeOrderItem.bind(tr.rowIndex));
-    orderTableBody.appendChild(tr);
-  }1
-
   public removeOrderItem(rowIndex) {
-    (<HTMLTableElement>document.getElementById('order_cart')).deleteRow(parseInt(rowIndex, 10));
+    this.order.orderItems.splice(rowIndex, 1);
+    this.calculateTotal();
   }
 
   private resetFormForNextOrderItem() {
