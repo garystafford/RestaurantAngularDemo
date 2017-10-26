@@ -24,20 +24,21 @@ export class AppComponent implements OnInit {
   order: Order = new Order;
   totalOrder = 0;
   orderService: OrderService = new OrderService;
-  orderResponse = 'moo';
-  isValid = false;
+  orderResponse = '...';
 
   constructor(private menuItemService: MenuItemService) {
   }
 
   ngOnInit(): void {
     this.getMenu();
-    // this.order.orderItems.push(new OrderItem());
   }
 
   onSubmit(): void {
-    this.orderResponse = this.orderService.placeOrder();
-    console.log(this.orderResponse);
+    if (this.order.orderItems.length > 0) {
+      this.orderResponse = this.orderService.placeOrder(this.order, this.totalOrder);
+    } else {
+      this.orderResponse = 'Please select some items before placing your order.';
+    }
   }
 
   onSelect(menuChoiceId: string, menuChoiceQuantity: string): void {
@@ -55,14 +56,8 @@ export class AppComponent implements OnInit {
     this.order.orderItems.push(orderItem);
     this.calculateTotal();
 
-    if (this.order.orderItems.length > 0) {
-      this.isValid = true;
-    } else {
-      this.isValid = false;
-    }
-
-    console.log(orderItem);
-    console.log(this.order.orderItems.length);
+    // console.log(orderItem);
+    // console.log(this.order.orderItems.length);
 
     this.resetFormForNextOrderItem();
   }
