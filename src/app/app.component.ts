@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   order: Order = new Order;
   totalOrder = 0;
   orderService: OrderService = new OrderService;
-  orderResponse = '...';
+  orderResponse = 'Please select some items.';
 
   constructor(private menuItemService: MenuItemService) {
   }
@@ -35,7 +35,9 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     if (this.order.orderItems.length > 0) {
-      this.orderResponse = this.orderService.placeOrder(this.order, this.totalOrder);
+      this.orderResponse = this.orderService.placeOrder(this.order);
+      this.order = new Order;
+      this.totalOrder = 0.00;
     } else {
       this.orderResponse = 'Please select some items before placing your order.';
     }
@@ -55,11 +57,10 @@ export class AppComponent implements OnInit {
     const orderItem: OrderItem = this.addItemToOrder(menuChoiceId, menuChoiceQuantity);
     this.order.orderItems.push(orderItem);
     this.calculateTotal();
+    this.resetFormForNextOrderItem();
 
     // console.log(orderItem);
     // console.log(this.order.orderItems.length);
-
-    this.resetFormForNextOrderItem();
   }
 
   getMenu(): void {

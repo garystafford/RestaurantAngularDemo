@@ -7,7 +7,7 @@ export class OrderService {
   constructor() {
   }
 
-  placeOrder(order: Order, totalOrder: number): string {
+  placeOrder(order: Order): string {
     return 'Order placed...';
   }
 }
