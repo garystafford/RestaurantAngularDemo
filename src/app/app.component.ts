@@ -4,16 +4,15 @@ import {MenuItem} from './menu-item';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Order} from './order';
 import {OrderItem} from './order-item';
-import {OrderService} from './order.service';
-import {HttpClient} from '@angular/common/http';
-import {OrderResponse} from "./order-response";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {IOrderResponse} from './order-response';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MenuItemService, OrderService]
+  providers: [MenuItemService]
 })
 
 @NgModule({
@@ -26,8 +25,8 @@ export class AppComponent implements OnInit {
   menu: MenuItem[];
   order: Order = new Order;
   totalOrder = 0;
-  orderService: OrderService = new OrderService(this.http);
-  orderResponseMessage: string;
+  orderResponse: IOrderResponse;
+  private _apiRoot = 'http://restaurantwebapi20171026011740.azurewebsites.net/api';
 
   constructor(private menuItemService: MenuItemService, private http: HttpClient) {
   }
@@ -38,14 +37,18 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     if (this.order.items.length > 0) {
-      const orderResponse: OrderResponse = this.orderService.placeOrder(this.order);
-      this.orderResponseMessage = 'Time Place:' + orderResponse.TimePlaced + '\n' +
-      'Order Number:' + orderResponse.OrderNumber + '\n' +
-      'Message:' + orderResponse.Message;
+      const headers = new HttpHeaders({'Content-Type': 'application/json'});
+      this.http.post<IOrderResponse>(`${this._apiRoot}/orders`, this.order, {headers: headers, observe: 'response'})
+        .subscribe(res => {
+          this.orderResponse = res.body;
+        });
+
       this.order = new Order;
       this.totalOrder = 0.00;
     } else {
-      this.orderResponseMessage = 'Please select some food, first.';
+      this.orderResponse.TimePlaced = Date.now().toLocaleString();
+      this.orderResponse.OrderNumber = 'N/A';
+      this.orderResponse.Message = 'Please select some food, first.';
     }
   }
 
