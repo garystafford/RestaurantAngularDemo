@@ -5,7 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Order} from './order';
 import {OrderItem} from './order-item';
 import {OrderService} from './order.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {OrderResponse} from "./order-response";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
   order: Order = new Order;
   totalOrder = 0;
   orderService: OrderService = new OrderService(this.http);
-  orderResponse = 'Please select some items.';
+  orderResponseMessage: string;
 
   constructor(private menuItemService: MenuItemService, private http: HttpClient) {
   }
@@ -37,14 +38,14 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     if (this.order.items.length > 0) {
-      this.orderResponse = this.orderService.placeOrder(this.order);
-      // const req = this.http.post('http://localhost:56478/api/orders', this.order, { headers: new HttpHeaders()
-      //   .set('Content-Type', 'application/json')}).subscribe(data => console.log(data));
-
+      const orderResponse: OrderResponse = this.orderService.placeOrder(this.order);
+      this.orderResponseMessage = 'Time Place:' + orderResponse.TimePlaced + '\n' +
+      'Order Number:' + orderResponse.OrderNumber + '\n' +
+      'Message:' + orderResponse.Message;
       this.order = new Order;
       this.totalOrder = 0.00;
     } else {
-      this.orderResponse = 'Please select some items before placing your order.';
+      this.orderResponseMessage = 'Please select some food, first.';
     }
   }
 
@@ -63,30 +64,27 @@ export class AppComponent implements OnInit {
     this.order.items.push(orderItem);
     this.calculateTotal();
     this.resetFormForNextOrderItem();
-
-    // console.log(orderItem);
-    // console.log(this.order.orderItems.length);
   }
 
-  getMenu(): void {
+  private getMenu(): void {
     this.menuItemService.getMenu()
       .then(menu => this.menu = menu)
       .then(menu => menu.sort((a, b) => a.description.localeCompare(b.description)));
   }
 
-  private calculateTotal() {
+  removeOrderItem(rowIndex): void {
+    this.order.items.splice(rowIndex, 1);
+    this.calculateTotal();
+  }
+
+  private calculateTotal(): void {
     this.totalOrder = 0;
     for (const item of this.order.items) {
       this.totalOrder = this.totalOrder + item.subtotal;
     }
   }
 
-  public removeOrderItem(rowIndex) {
-    this.order.items.splice(rowIndex, 1);
-    this.calculateTotal();
-  }
-
-  private resetFormForNextOrderItem() {
+  private resetFormForNextOrderItem(): void {
     (<HTMLInputElement>document.getElementById('select_quantity')).valueAsNumber = 0;
     (<HTMLSelectElement>document.getElementById('select_item')).selectedIndex = 0;
   }

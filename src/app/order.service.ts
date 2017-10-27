@@ -11,9 +11,13 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
-  placeOrder(order: Order): string {
-    this.postOrder(order);
-    return 'Order sent!';
+  placeOrder(order: Order): OrderResponse {
+    let response: OrderResponse = new OrderResponse;
+    const orderResponse = this.postOrder(order);
+    orderResponse.subscribe(object => {
+      response = object;
+    });
+    return response;
   }
 
   private postOrder(order: Order): Observable<OrderResponse> {
