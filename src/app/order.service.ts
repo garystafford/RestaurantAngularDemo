@@ -13,23 +13,25 @@ export class OrderService {
 
   placeOrder(order: Order): string {
     this.postOrder(order);
-    return 'Order placed...';
+    return 'Order sent!';
   }
 
-  postOrder(order: Order): Observable<OrderResponse> {
+  private postOrder(order: Order): Observable<OrderResponse> {
     let orderResponse = null;
     // const headers = new Headers({'Content-Type': 'application/json'});
-    // const options = new RequestOptions({headers:headers});
-    const req = this.http.post('http://localhost:56478/api/orders', order, {
+    // const options = new RequestOptions({headers: HttpHeaders});
+    const req = this.http.post('http://restaurantwebapi20171026011740.azurewebsites.net/api/orders', order, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     }).subscribe(res => orderResponse = res);
 
-    return orderResponse.map(obj => {
-      return new OrderResponse(
-        obj.OrderDateTime,
-        obj.OrderNumber,
-        obj.OrderMessage
-      );
-    });
+    return orderResponse;
+
+    // return orderResponse.map(obj => {
+    //   return new OrderResponse(
+    //     obj.OrderDateTime,
+    //     obj.OrderNumber,
+    //     obj.OrderMessage
+    //   );
+    // });
   }
 }

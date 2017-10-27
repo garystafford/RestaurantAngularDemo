@@ -1,11 +1,11 @@
 export class OrderResponse {
-  OrderDateTime: string;
+  TimePlaced: string;
   OrderNumber: string;
-  OrderMessage: string;
+  Message: string;
 
-  constructor(orderDateTime: string, orderNumber: string, orderMessage: string) {
-    this.OrderDateTime = orderDateTime;
+  constructor(timePlaced: string, orderNumber: string, message: string) {
+    this.TimePlaced = timePlaced;
     this.OrderNumber = orderNumber;
-    this.OrderMessage = orderMessage;
+    this.Message = message;
   }
 }

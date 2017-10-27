@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.order.orderItems.length > 0) {
+    if (this.order.items.length > 0) {
       this.orderResponse = this.orderService.placeOrder(this.order);
       // const req = this.http.post('http://localhost:56478/api/orders', this.order, { headers: new HttpHeaders()
       //   .set('Content-Type', 'application/json')}).subscribe(data => console.log(data));
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     }
 
     const orderItem: OrderItem = this.addItemToOrder(menuChoiceId, menuChoiceQuantity);
-    this.order.orderItems.push(orderItem);
+    this.order.items.push(orderItem);
     this.calculateTotal();
     this.resetFormForNextOrderItem();
 
@@ -76,13 +76,13 @@ export class AppComponent implements OnInit {
 
   private calculateTotal() {
     this.totalOrder = 0;
-    for (const item of this.order.orderItems) {
+    for (const item of this.order.items) {
       this.totalOrder = this.totalOrder + item.subtotal;
     }
   }
 
   public removeOrderItem(rowIndex) {
-    this.order.orderItems.splice(rowIndex, 1);
+    this.order.items.splice(rowIndex, 1);
     this.calculateTotal();
   }
 
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
 
     const orderItem: OrderItem = new OrderItem();
     orderItem.quantity = parseInt(menuChoiceQuantity, 10);
-    orderItem.id = menuChoice.id;
+    orderItem.menuId = menuChoice.id;
     orderItem.description = menuChoice.description;
     orderItem.price = menuChoice.price;
     orderItem.subtotal = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));
