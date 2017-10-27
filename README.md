@@ -42,3 +42,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 5. Build and run WebStorm project continuously  
 `ng serve --open`
+
+
+## References
+https://codecraft.tv/courses/angular/http/http-with-observables/

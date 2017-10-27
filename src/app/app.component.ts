@@ -5,6 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {Order} from './order';
 import {OrderItem} from './order-item';
 import {OrderService} from './order.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -23,10 +25,10 @@ export class AppComponent implements OnInit {
   menu: MenuItem[];
   order: Order = new Order;
   totalOrder = 0;
-  orderService: OrderService = new OrderService;
+  orderService: OrderService = new OrderService(this.http);
   orderResponse = 'Please select some items.';
 
-  constructor(private menuItemService: MenuItemService) {
+  constructor(private menuItemService: MenuItemService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -36,6 +38,9 @@ export class AppComponent implements OnInit {
   onSubmit(): void {
     if (this.order.orderItems.length > 0) {
       this.orderResponse = this.orderService.placeOrder(this.order);
+      // const req = this.http.post('http://localhost:56478/api/orders', this.order, { headers: new HttpHeaders()
+      //   .set('Content-Type', 'application/json')}).subscribe(data => console.log(data));
+
       this.order = new Order;
       this.totalOrder = 0.00;
     } else {
