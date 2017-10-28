@@ -97,7 +97,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="col-xs-12 col-sm-6 col-md-8" *ngIf="orderResponse != undefined">
       <p>{{orderResponse.TimePlaced}}</p>
       <p>{{orderResponse.OrderNumber}}</p>
       <p>{{orderResponse.Message}}</p>
