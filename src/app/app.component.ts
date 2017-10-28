@@ -1,25 +1,17 @@
-import {Component, OnInit, NgModule} from '@angular/core';
-import {MenuItemService} from './menu-item.service';
-import {MenuItem} from './menu-item';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {Order} from './order';
-import {OrderItem} from './order-item';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {IOrderResponse} from './order-response';
+import {MenuItemService} from './menu-item.service';
+import {MenuItem} from './menu-item';
+import {Order} from './order';
+import {OrderItem} from './order-item';
 import 'rxjs/add/operator/retry';
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [MenuItemService]
-})
-
-@NgModule({
-  imports: [
-    NgbModule
-  ]
 })
 
 export class AppComponent implements OnInit {
