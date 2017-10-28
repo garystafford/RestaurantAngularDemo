@@ -47,7 +47,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `ng serve --open`
 
 7. Build for Production   
-`ng build --prod`
+```bash
+ng build --prod
+git checkout dist
+git add dist/
+git commit -m 'Adding new Production build'
+git push
+git checkout master
+```
 
 
 ## References
