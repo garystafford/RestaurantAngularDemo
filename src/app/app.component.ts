@@ -59,8 +59,8 @@ export class AppComponent implements OnInit {
       this.order = new Order;
       this.totalOrder = 0.00;
     } else {
-      this.orderResponse.TimePlaced = Date.now().toLocaleString();
-      this.orderResponse.OrderNumber = 'N/A';
+      this.orderResponse.TimePlaced = '';
+      this.orderResponse.OrderNumber = '';
       this.orderResponse.Message = 'Please select some food, first.';
     }
   }

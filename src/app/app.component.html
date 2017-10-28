@@ -98,9 +98,10 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8" *ngIf="orderResponse != undefined">
-      <p>{{orderResponse.TimePlaced}}</p>
-      <p>{{orderResponse.OrderNumber}}</p>
-      <p>{{orderResponse.Message}}</p>
+      <p class="h5">Confirmation</p>
+      Order Time: {{orderResponse.TimePlaced}}<br>
+      Order Number: {{orderResponse.OrderNumber}}<br>
+      {{orderResponse.Message}}
     </div>
   </div>
 </div>
