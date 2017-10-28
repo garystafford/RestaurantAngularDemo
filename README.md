@@ -26,8 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-
-## Setup and Run Notes
+## Project Setup and Run Notes
 
 1. Download and install Node.js and npm  
 
@@ -40,13 +39,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 4. Install ng-bootstrap into the project  
 `npm install --save @ng-bootstrap/ng-bootstrap`
 
-5. Update dependencies  
+5. Update dependencies (_optional_)  
 `npm install david -g`  
 `david update`
 
-6. Build and run WebStorm project continuously  
+6. Build and run project continuously  
 `ng serve --open`
+
+7. Build for Production   
+`ng build --prod`
 
 
 ## References
+
 https://angular.io/guide/http#httpclient
+https://ng-bootstrap.github.io/#/getting-started
+https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4)
+
