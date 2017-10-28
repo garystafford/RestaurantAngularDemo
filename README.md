@@ -40,9 +40,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 4. Install ng-bootstrap into the project  
 `npm install --save @ng-bootstrap/ng-bootstrap`
 
-5. Build and run WebStorm project continuously  
+5. Update dependencies  
+`npm install david -g`  
+`david update`
+
+6. Build and run WebStorm project continuously  
 `ng serve --open`
 
 
 ## References
-https://codecraft.tv/courses/angular/http/http-with-observables/
+https://angular.io/guide/http#httpclient

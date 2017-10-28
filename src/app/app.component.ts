@@ -40,21 +40,21 @@ export class AppComponent implements OnInit {
     if (this.order.items.length > 0) {
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
       this.http.post<IOrderResponse>(`${this._apiRoot}/orders`, this.order, {headers: headers, observe: 'response'})
-        .retry(3)
+        .retry(1)
         .subscribe(res => {
-          this.orderResponse = res.body;
-          this.orderResponse.TimePlaced = (new Date(Date.parse(this.orderResponse.TimePlaced))).toLocaleTimeString();
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.log('An error occurred:', err.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          }
-        });
+            this.orderResponse = res.body;
+            this.orderResponse.TimePlaced = (new Date(Date.parse(this.orderResponse.TimePlaced))).toLocaleTimeString();
+          },
+          (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+              // A client-side or network error occurred. Handle it accordingly.
+              console.log('An error occurred:', err.error.message);
+            } else {
+              // The backend returned an unsuccessful response code.
+              // The response body may contain clues as to what went wrong,
+              console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            }
+          });
 
       this.order = new Order;
       this.totalOrder = 0.00;
