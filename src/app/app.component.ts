@@ -5,6 +5,7 @@ import {MenuItemService} from './menu-item.service';
 import {MenuItem} from './menu-item';
 import {Order} from './order';
 import {OrderItem} from './order-item';
+import {environment} from '../environments/environment.prod';
 import 'rxjs/add/operator/retry';
 
 @Component({
@@ -19,7 +20,6 @@ export class AppComponent implements OnInit {
   order: Order = new Order;
   totalOrder = 0;
   orderResponse: IOrderResponse;
-  private _apiRoot = 'http://restaurantwebapi20171026011740.azurewebsites.net/api';
 
   constructor(private menuItemService: MenuItemService, private http: HttpClient) {
   }
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   onSubmit(): void {
     if (this.order.items.length > 0) {
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
-      this.http.post<IOrderResponse>(`${this._apiRoot}/orders`, this.order, {headers: headers, observe: 'response'})
+      this.http.post<IOrderResponse>(`${environment.apiOrderRoot}/orders`, this.order, {headers: headers, observe: 'response'})
         .retry(1)
         .subscribe(res => {
             this.orderResponse = res.body;
