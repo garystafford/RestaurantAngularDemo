@@ -2,6 +2,9 @@
 
 project_path="cd /c/Users/gary.stafford/WebstormProjects/RestaurantDemo"
 
+npm install
+ng build --prod
+
 cd ${project_path}
 cp -r dist/ /tmp/
 git checkout dist
