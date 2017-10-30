@@ -109,11 +109,11 @@ export class AppComponent implements OnInit {
   }
 
   private addItemToOrder(menuChoiceId, menuChoiceQuantity): OrderItem {
-    const menuChoice: IMenuItem = this.menu.find(menuItem => menuItem.Id === parseInt(menuChoiceId, 10));
+    const menuChoice: IMenuItem = this.menu.find(menuItem => menuItem.MenuId === parseInt(menuChoiceId, 10));
 
     const orderItem: OrderItem = new OrderItem();
     orderItem.quantity = parseInt(menuChoiceQuantity, 10);
-    orderItem.menuId = menuChoice.Id;
+    orderItem.menuId = menuChoice.MenuId;
     orderItem.description = menuChoice.Description;
     orderItem.price = menuChoice.Price;
     orderItem.subtotal = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));

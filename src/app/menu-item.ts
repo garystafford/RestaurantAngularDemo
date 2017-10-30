@@ -1,5 +1,5 @@
 export interface IMenuItem {
-  Id: number;
+  MenuId: number;
   Description: string;
   Price: number;
 }
