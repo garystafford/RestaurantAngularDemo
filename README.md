@@ -48,7 +48,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 7. Build for Production   
 ```bash
-ng build --prod
+ng build --prod --env=prod
 git checkout dist
 git add dist/
 git commit -m 'Adding new Production build'

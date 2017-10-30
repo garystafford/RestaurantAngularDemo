@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {MenuItem} from './menu-item';
+import {IMenuItem} from './menu-item';
 import {MENU} from './mock-menu-items';
 
 @Injectable()
 export class MenuItemService {
-  getMenu(): Promise<MenuItem[]> {
+  getMenu(): Promise<IMenuItem[]> {
     return Promise.resolve(MENU);
   }
 }
