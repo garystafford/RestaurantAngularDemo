@@ -47,15 +47,19 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `ng serve --open`
 
 7. Build for Production   
+
 ```bash
+git checkout master
+npm install
 ng build --prod --env=prod
+
+cp -r dist/ /tmp/
 git checkout dist
-git add dist/
-git commit -m 'Adding new Production build'
-git push
+cp -r /tmp/dist/ .
+git add -A && git commit -m "New build of Restaurant App" && git push
+
 git checkout master
 ```
-
 
 ## References
 
@@ -63,4 +67,4 @@ https://angular.io/guide/http#httpclient
 https://ng-bootstrap.github.io/#/getting-started
 https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4)
 https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info
-
+https://medium.com/beautiful-angular/angular-2-and-environment-variables-59c57ba643be
