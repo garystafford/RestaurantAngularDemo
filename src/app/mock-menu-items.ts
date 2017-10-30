@@ -1,14 +1,14 @@
 import {MenuItem} from './menu-item';
 
 export const MENU: MenuItem[] = [
-  {id: 1, description: 'Cheeseburger', price: 3.99},
-  {id: 2, description: 'Hamburger', price: 2.99},
-  {id: 3, description: 'Hot Dog', price: 2.49},
-  {id: 4, description: 'Grilled Chicken Sandwich', price: 4.99},
-  {id: 5, description: 'French Fries', price: 1.29},
-  {id: 6, description: 'Onion Rings', price: 2.29},
-  {id: 7, description: 'Soft Drink', price: 1.19},
-  {id: 8, description: 'Coffee', price: 0.99},
-  {id: 9, description: 'Water', price: 0.00},
-  {id: 10, description: 'Ice Cream Cone', price: 1.99}
+  {Id: 1, Description: 'Cheeseburger', Price: 3.99},
+  {Id: 2, Description: 'Hamburger', Price: 2.99},
+  {Id: 3, Description: 'Hot Dog', Price: 2.49},
+  {Id: 4, Description: 'Grilled Chicken Sandwich', Price: 4.99},
+  {Id: 5, Description: 'French Fries', Price: 1.29},
+  {Id: 6, Description: 'Onion Rings', Price: 2.29},
+  {Id: 7, Description: 'Soft Drink', Price: 1.19},
+  {Id: 8, Description: 'Coffee', Price: 0.99},
+  {Id: 9, Description: 'Water', Price: 0.00},
+  {Id: 10, Description: 'Ice Cream Cone', Price: 1.99}
 ];

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {IOrderResponse} from './order-response';
-import {MenuItemService} from './menu-item.service';
-import {MenuItem} from './menu-item';
+import {IMenuItem} from './menu-item';
 import {Order} from './order';
 import {OrderItem} from './order-item';
 import {environment} from '../environments/environment';
@@ -11,17 +10,16 @@ import 'rxjs/add/operator/retry';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [MenuItemService]
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit {
-  menu: MenuItem[];
+  menu: IMenuItem[];
   order: Order = new Order;
   totalOrder = 0;
   orderResponse: IOrderResponse;
 
-  constructor(private menuItemService: MenuItemService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -31,7 +29,10 @@ export class AppComponent implements OnInit {
   onSubmit(): void {
     if (this.order.items.length > 0) {
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
-      this.http.post<IOrderResponse>(`${environment.apiOrderRoot}/orders`, this.order, {headers: headers, observe: 'response'})
+      this.http.post<IOrderResponse>(`${environment.apiOrderRoot}/api/orders`, this.order, {
+        headers: headers,
+        observe: 'response'
+      })
         .retry(1)
         .subscribe(res => {
             this.orderResponse = res.body;
@@ -75,9 +76,19 @@ export class AppComponent implements OnInit {
   }
 
   private getMenu(): void {
-    this.menuItemService.getMenu()
-      .then(menu => this.menu = menu)
-      .then(menu => menu.sort((a, b) => a.description.localeCompare(b.description)));
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.http.get<IMenuItem[]>(`${environment.apiMenuRoot}/api/menuitems`, {headers: headers, observe: 'response'})
+      .retry(1)
+      .subscribe(res => {
+          this.menu = res.body;
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('An error occurred:', err.error.message);
+          } else {
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          }
+        });
   }
 
   removeOrderItem(rowIndex): void {
@@ -98,13 +109,13 @@ export class AppComponent implements OnInit {
   }
 
   private addItemToOrder(menuChoiceId, menuChoiceQuantity): OrderItem {
-    const menuChoice: MenuItem = this.menu.find(menuItem => menuItem.id === parseInt(menuChoiceId, 10));
+    const menuChoice: IMenuItem = this.menu.find(menuItem => menuItem.Id === parseInt(menuChoiceId, 10));
 
     const orderItem: OrderItem = new OrderItem();
     orderItem.quantity = parseInt(menuChoiceQuantity, 10);
-    orderItem.menuId = menuChoice.id;
-    orderItem.description = menuChoice.description;
-    orderItem.price = menuChoice.price;
+    orderItem.menuId = menuChoice.Id;
+    orderItem.description = menuChoice.Description;
+    orderItem.price = menuChoice.Price;
     orderItem.subtotal = parseFloat((orderItem.quantity * orderItem.price).toFixed(2));
 
     return orderItem;

@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiMenuRoot: 'http://localhost:564780',
+  apiMenuRoot: 'http://localhost:56480',
   apiOrderRoot: 'http://localhost:56481'
 };
