@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiMenuRoot: 'http://restaurantmenuservice.azurewebsites.net/api',
-  apiOrderRoot: 'http://restaurantorderservice.azurewebsites.net/api'
+  apiMenuRoot: 'http://localhost:564780',
+  apiOrderRoot: 'http://localhost:56481'
 };

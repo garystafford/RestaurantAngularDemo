@@ -5,7 +5,7 @@ import {MenuItemService} from './menu-item.service';
 import {MenuItem} from './menu-item';
 import {Order} from './order';
 import {OrderItem} from './order-item';
-import {environment} from '../environments/environment.prod';
+import {environment} from '../environments/environment';
 import 'rxjs/add/operator/retry';
 
 @Component({

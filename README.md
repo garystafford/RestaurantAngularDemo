@@ -62,4 +62,5 @@ git checkout master
 https://angular.io/guide/http#httpclient
 https://ng-bootstrap.github.io/#/getting-started
 https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4)
+https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info
 
