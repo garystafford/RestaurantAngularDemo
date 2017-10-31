@@ -28,25 +28,33 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Project Setup and Run Notes
 
-1. Download and install Node.js and npm  
+1. Download and install Node.js and npm
 
-2. Install the Angular CLI globally  
-`npm install -g @angular/cli`
+2. Install the Angular CLI globally<br>
+  `npm install -g @angular/cli`
 
-3. Install ng-bootstrap dependency into the project  
-`npm install --save bootstrap@4.0.0-beta.2`
+3. Install ng-bootstrap dependency into the project<br>
+  `npm install --save bootstrap@4.0.0-beta.2`
 
-4. Install ng-bootstrap into the project  
-`npm install --save @ng-bootstrap/ng-bootstrap`
+4. Install ng-bootstrap into the project<br>
+  `npm install --save @ng-bootstrap/ng-bootstrap`
 
-5. Update dependencies (_optional_)  
-`npm install david -g`  
-`david update`
+5. Update dependencies (_optional_)
 
-6. Build and run project continuously  
-`ng serve --open`
+```bash
+npm install david -g
+david update
+npm install typescript@'>=2.1.0 <2.4.0' --save-dev
+```
 
-7. Build for Production   
+6. Build and run project continuously
+
+```bash
+ng serve --open
+ng serve --open --env=prod
+```
+
+7. Build for Production
 
 ```bash
 git checkout master
@@ -63,8 +71,8 @@ git checkout master
 
 ## References
 
-https://angular.io/guide/http#httpclient
-https://ng-bootstrap.github.io/#/getting-started
-https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4)
-https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info
-https://medium.com/beautiful-angular/angular-2-and-environment-variables-59c57ba643be
+* https://angular.io/guide/http#httpclient>
+* <https://ng-bootstrap.github.io/#/getting-started>
+* <https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4>)
+* <https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info>
+* <https://medium.com/beautiful-angular/angular-2-and-environment-variables-59c57ba643be>
