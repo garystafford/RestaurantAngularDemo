@@ -61,6 +61,10 @@
     "class": {
       "spec": false
     },
-    "component": {}
+    "component": {
+    }
+  },
+  "warnings": {
+    "typescriptMismatch": false
   }
 }
