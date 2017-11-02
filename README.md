@@ -1,4 +1,4 @@
-# Restaurant Angular 4 Demo
+# Angular 4 Restaurant App Demo
 
 Angular 4 web application, developed for the following post, [Developing Applications for the Cloud with Azure App Services and MongoDB Atlas](https://wp.me/p1RD28-5ij). Application is designed to be deployed as Azure API Apps, backed by MongoDB Atlas.
 
@@ -39,7 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 2. Install the Angular CLI globally<br>
   `npm install -g @angular/cli`
 
-3. Install `ng-bootstrap` dependency into the project<br>
+  3. Install `ng-bootstrap` dependency into the project<br>
   `npm install --save bootstrap@4.0.0-beta.2`
 
 4. Install `ng-bootstrap` into the project<br>
