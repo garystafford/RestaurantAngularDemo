@@ -47,32 +47,30 @@ david update
 npm install typescript@'>=2.1.0 <2.4.0' --save-dev
 ```
 
-6. Build and run project continuously
+6. Transpile and run continuously
 
 ```bash
-ng serve --open
-ng serve --open --env=prod
+ng serve --open # local
+ng serve --open --env=prod # Azure/Atlas
 ```
 
-7. Build for Production
+7. Build for Development
 
 ```bash
-git checkout master
-npm install
+ng build --env=prod # local
+ng build --env=prod # Azure/Atlas
+```
+
+8. Build for Production
+
+```bash
 ng build --prod --env=prod
-
-cp -r dist/ /tmp/
-git checkout dist
-cp -r /tmp/dist/ .
-git add -A && git commit -m "New build of Restaurant App" && git push
-
-git checkout master
 ```
 
 ## References
 
-* https://angular.io/guide/http#httpclient>
-* <https://ng-bootstrap.github.io/#/getting-started>
-* <https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4>)
-* <https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info>
-* <https://medium.com/beautiful-angular/angular-2-and-environment-variables-59c57ba643be>
+- <https://angular.io/guide/http#httpclient>>
+- <https://ng-bootstrap.github.io/#/getting-started>
+- <https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4>)
+- <https://www.intertech.com/Blog/deploying-angular-4-apps-with-environment-specific-info>
+- <https://medium.com/beautiful-angular/angular-2-and-environment-variables-59c57ba643be>
