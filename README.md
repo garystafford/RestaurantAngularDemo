@@ -2,7 +2,7 @@
 
 Angular 4 web application, developed for the following post, [Developing Applications for the Cloud with Azure App Services and MongoDB Atlas](https://wp.me/p1RD28-5ij). Application is designed to be deployed as Azure Web App, backed by the [Restaurant API](https://github.com/garystafford/RestaurantWebAPI).
 
-![Architecture](RestaurantDemoAPI.png)https://github.com/garystafford/RestaurantWebAPI
+![Architecture](RestaurantDemoAPI.png)
 
 ## Project generator
 
