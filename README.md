@@ -34,23 +34,24 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Project Setup and Run Notes
 
-1. Download and install Node.js and npm
+1. Download and install Node.js, npm, and Yarn<br>
+   `npm install -g yarn`
 
 2. Install the Angular CLI globally<br>
-  `npm install -g @angular/cli`
+  `yarn install -g @angular/cli`
 
   3. Install `ng-bootstrap` dependency into the project<br>
-  `npm install --save bootstrap@4.0.0-beta.2`
+  `yarn install --save bootstrap@4.0.0-beta.2`
 
 4. Install `ng-bootstrap` into the project<br>
-  `npm install --save @ng-bootstrap/ng-bootstrap`
+  `yarn install --save @ng-bootstrap/ng-bootstrap`
 
 5. Update dependencies (_optional_)
 
 ```bash
-npm install david -g
+yarn install david -g
 david update
-npm install typescript@'>=2.1.0 <2.4.0' --save-dev
+yarn install typescript@'>=2.1.0 <2.4.0' --save-dev
 ```
 
 6. Transpile and run continuously
