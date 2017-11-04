@@ -54,11 +54,11 @@ david update
 yarn install typescript@'>=2.1.0 <2.4.0' --save-dev
 ```
 
-6. Transpile and run continuously
+6. Transpile and run continuously in development
 
 ```bash
-ng serve --open # local
-ng serve --open --env=prod # Azure/Atlas
+ng serve --open --dev # local
+ng serve --open --dev --env=prod # Azure/Atlas
 ```
 
 7. Build for Development
