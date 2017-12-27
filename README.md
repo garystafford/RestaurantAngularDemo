@@ -41,17 +41,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   `yarn install -g @angular/cli`
 
   3. Install `ng-bootstrap` dependency into the project<br>
-  `yarn install --save bootstrap@4.0.0-beta.2`
+  `yarn add bootstrap@4.0.0-beta.2`
 
 4. Install `ng-bootstrap` into the project<br>
-  `yarn install --save @ng-bootstrap/ng-bootstrap`
+  `yarn add @ng-bootstrap/ng-bootstrap`
 
 5. Update dependencies (_optional_)
 
 ```bash
 yarn install david -g
 david update
-yarn install typescript@'>=2.1.0 <2.4.0' --save-dev
+yarn add typescript@'>=2.1.0 <2.4.0' --save-dev
 ```
 
 6. Transpile and run continuously in development
