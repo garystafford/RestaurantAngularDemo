@@ -38,7 +38,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
    `npm install -g yarn`
 
 2. Install the Angular CLI globally<br>
-  `yarn install -g @angular/cli`
+  `yarn global add @angular/cli`
 
   3. Install `ng-bootstrap` dependency into the project<br>
   `yarn add bootstrap@4.0.0-beta.2`
@@ -49,7 +49,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 5. Update dependencies (_optional_)
 
 ```bash
-yarn install david -g
+yarn global add david
 david update
 yarn add typescript@'>=2.1.0 <2.4.0' --save-dev
 ```
